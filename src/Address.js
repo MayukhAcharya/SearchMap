@@ -6,16 +6,36 @@ import {
   StatusBar,
   TouchableOpacity,
   Dimensions,
+  Button,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextInput } from "react-native-paper";
 import Wavyheader from "../Components/Wavyheader";
 import WavyFooter from "../Components/WavyFooter";
+import { API_TOKEN } from "@env";
+import axios from "axios";
 
 const { height, width } = Dimensions.get("window");
 
 export default function Address({ navigation }) {
   const [address, SetAddress] = useState("");
+  const [latitude, SetLatitude] = useState("");
+  const [longitude, setLonitude] = useState("");
+
+  const LatLong = (address) => {
+    axios({
+      method: "get",
+      url: `https://geocode.search.hereapi.com/v1/geocode?q=${address}&apiKey=${API_TOKEN}`,
+    })
+      .then((response) => {
+        SetLatitude(response.data.items[0].position.lat);
+        setLonitude(response.data.items[0].position.lng);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   return (
     <View style={styles.container}>
       {/* <Image
@@ -40,10 +60,18 @@ export default function Address({ navigation }) {
           left={<TextInput.Icon icon="home" />}
           theme={{ roundness: 15 }}
           onSubmitEditing={(value) => SetAddress(value.nativeEvent.text)}
+          //onChangeText={LatLong(address)}
         />
         <TouchableOpacity
           style={styles.Btn}
-          onPress={() => navigation.navigate("map", { paramKey: address })}
+          onPress={LatLong(address)}
+          onPressIn={() =>
+            navigation.navigate("map", {
+              paramKey: address,
+              lati: latitude,
+              long: longitude,
+            })
+          }
         >
           <Text style={styles.BtnText}>Let's Go</Text>
         </TouchableOpacity>

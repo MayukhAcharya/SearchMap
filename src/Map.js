@@ -1,22 +1,16 @@
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import React, { useEffect } from "react";
 import Wavyheader from "../Components/Wavyheader";
-import { API_TOKEN } from "@env";
 
 const { height, width } = Dimensions.get("window");
 
 export default function Map({ route }) {
-  // useEffect(() => {
-  //   url = `https://geocode.search.hereapi.com/v1/
-  //   geocode
-  //   ?q=Invalidenstr+117+Berlin
-  //   &apiKey={${API_TOKEN}}`;
-  // }, []);
-
   return (
     <View style={styles.container}>
       <Wavyheader customstyles1={styles.svgCurve} />
       <Text style={styles.address}>{route.params.paramKey}</Text>
+      <Text style={styles.address}>Latitude :{route.params.lati}</Text>
+      <Text style={styles.address}>Longitude :{route.params.long}</Text>
     </View>
   );
 }
@@ -39,6 +33,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "black",
     textAlign: "center",
-    bottom: 210,
+    bottom: 190,
   },
 });
