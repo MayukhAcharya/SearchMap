@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   },
   svgCurve: {
     position: "absolute",
-    width: width,
+    width: Dimensions.get("window").width,
   },
   svgfooter: {
     position: "absolute",

@@ -1,16 +1,24 @@
-import { View, Text } from "react-native";
+import { View, Dimensions } from "react-native";
 import React from "react";
 import Svg, { Path } from "react-native-svg";
+
+const { height, width } = Dimensions.get("window");
 
 export default function WavyFooter({ customstyles2 }) {
   return (
     <View style={customstyles2}>
-      <View style={{ backgroundColor: "#1b03a3", top: 720, height: 120 }}>
+      <View
+        style={{
+          backgroundColor: "#1b03a3",
+          top: width / 0.55,
+          height: height / 7.1,
+        }}
+      >
         <Svg
-          height="100%"
-          width="100%"
+          height={height / 6.8}
+          width={width / 0.99}
           viewBox="0 0 1440 320"
-          style={{ position: "absolute", bottom: 90 }}
+          style={{ position: "absolute", bottom: width / 4.4 }}
         >
           <Path
             fill="#1b03a3"

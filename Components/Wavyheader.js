@@ -1,16 +1,18 @@
-import { View, Text } from "react-native";
+import { View, Dimensions } from "react-native";
 import React from "react";
 import Svg, { Path } from "react-native-svg";
+
+const { height, width } = Dimensions.get("window");
 
 export default function Wavyheader({ customstyles1 }) {
   return (
     <View style={customstyles1}>
-      <View style={{ backgroundColor: "#1b03a3", height: 120 }}>
+      <View style={{ backgroundColor: "#1b03a3", height: width / 3 }}>
         <Svg
-          height="120%"
-          width="100%"
+          height={height / 6.2}
+          width={width / 0.99}
           viewBox="0 0 1440 320"
-          style={{ position: "absolute", top: 90 }}
+          style={{ position: "absolute", top: width / 4.4 }}
         >
           <Path
             fill="#1b03a3"
